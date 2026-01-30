@@ -16,3 +16,10 @@ argon2_cffi
 PyJWT
 pytest-mock
 pydantic
+
+langchain 
+langchain-community 
+langchain-core 
+pypdf
+pymupdf4llm
+langchain_text_splitters
