@@ -95,5 +95,5 @@ for i in range(0, len(chunks), batch_size):
     print("Vector sample (first 10 dimensions):", vectors[0][:10])
 
     
-    print(f"Batch {i} added ✅\n")
+    print(f"Batch {i} added \n")
 
