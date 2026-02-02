@@ -16,15 +16,13 @@ argon2_cffi
 PyJWT
 pytest-mock
 pydantic
-
-langchain 
-langchain-community 
-langchain-core 
+langchain
+langchain-community
+langchain-core
 pypdf
 langchain_text_splitters
 chromadb
 langchain-chroma
-sentence-transformers --use-deprecated=legacy-resolver
+sentence-transformers
 transformers<5.0.0
 huggingface-hub<1.0.0,>=0.36.0
-
