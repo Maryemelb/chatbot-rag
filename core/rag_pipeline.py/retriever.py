@@ -3,7 +3,7 @@ import chromadb
 from chromadb.config import Settings
 import os
 import asyncio
-async def retriever(query: str,embedding,collection_vect,db_path, nbr_results=3):
+async def retriever(query: str,embedding,collection_vect, nbr_results=3):
   #embed the query
   query_vector= embedding.embed_query(query)
   #search on the cllection
@@ -27,10 +27,11 @@ client = chromadb.PersistentClient(
 )
 collection_vect= client.get_or_create_collection('pdf_vectors2')
 embedding= HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-res,metadatas,vect, page,pages_label= asyncio.run(retriever('what is the suject of this book',embedding,collection_vect,db_path, nbr_results=3))
+res,metadatas,vect, page,pages_label= asyncio.run(retriever('what is the subject of this book',embedding,collection_vect,db_path, nbr_results=3))
 print(res)
 print('hi')
 print(vect)
 print(metadatas)
 print(page)
 print(pages_label)
+
