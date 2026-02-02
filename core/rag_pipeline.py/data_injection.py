@@ -27,9 +27,19 @@ for c in chunks[:3]:
 
 embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 #Embuding
-client = chromadb.HttpClient(
-    host="localhost",
-    port=8005
+
+# client = chromadb.HttpClient(
+#     host="localhost",
+#     port=8005
+# )
+
+#added
+db_path = os.getenv("CHROMA_PATH", "./core/dataset/chroma_data")
+
+# Initialize the PersistentClient
+client = chromadb.PersistentClient(
+    path=db_path,
+    settings=Settings(allow_reset=True)
 )
 #create a collection
 collection = client.get_or_create_collection(
