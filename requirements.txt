@@ -24,7 +24,18 @@ pypdf
 langchain_text_splitters
 chromadb
 langchain-chroma
-sentence-transformers --use-deprecated=legacy-resolver
+scikit-learn
+# sentence-transformers --use-deprecated=legacy-resolver
 transformers<5.0.0
 huggingface-hub<1.0.0,>=0.36.0
 
+sentence-transformers
+huggingface-hub<1.0.0,>=0.36.0
+langchain-community 
+httpx
+rich>=12.4.4,<14
+
+
+pytest 
+pluggy
+# pip install -U langchain-huggingface
