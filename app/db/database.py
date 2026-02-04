@@ -149,6 +149,7 @@ questions_list = [
     "How does the performance monitor allow for detecting slowdowns?",
     "What is the utility of administrative tools integrated into Windows?",
     "What are the major differences between Remote Desktop and Remote Assistance?",
+    "How did the author s early experience as a tinkerer lead to his career in IT support?"
     "Why is the Quick Assist tool preferred for support to individuals?",
     "What are the most common third-party solutions for remote control?",
     "How to authorize remote administration via group policies?",

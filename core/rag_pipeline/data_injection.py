@@ -13,8 +13,8 @@ def data_injuction():
     documents = loader.load()  
 
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=250,
-        chunk_overlap=30,
+        chunk_size=1300,
+        chunk_overlap=300,
         separators=["\n\n", "\n", ".", " "]
     )
 
@@ -34,7 +34,7 @@ def data_injuction():
     # )
 
     #added
-    db_path = os.getenv("CHROMA_PATH", "./core/dataset/chroma_data")
+    db_path = os.getenv("CHROMA_PATH", "./core/dataset/chroma_data2")
 
     # Initialize the PersistentClient
     client = chromadb.PersistentClient(
