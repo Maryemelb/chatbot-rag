@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pytest import Session
 from ..schemas.user_schema import user_schema
 from app.dependencies.dependencies import getdb
-from app.models.user import users
+from app.models.user import User
 from passlib.context import CryptContext
 
 router= APIRouter(
@@ -12,6 +12,6 @@ router= APIRouter(
 )
 
 @router.post('/health')
-def register(db:Session= Depends(getdb)):
+def health(db:Session= Depends(getdb)):
    
     return "hi"

@@ -1,10 +1,15 @@
 from fastapi import FastAPI
 from app.routes.login import router as login_router
 from app.routes.register import router as register_router
+from app.routes.history import router as history_router
+from app.routes.query import router as query_router
 from sqlalchemy_utils import create_database, database_exists
 from app.db.database import Base, engine
 from app.schemas import user_schema
+from app.models.query import Query
+from app.models.user import User
 from app.models.question import Question
+
 from app.db.database import questions_list, sessionLocal
 app= FastAPI()
 
@@ -30,3 +35,5 @@ else:
 
 app.include_router(register_router)
 app.include_router(login_router)
+app.include_router(query_router)
+app.include_router(history_router)
