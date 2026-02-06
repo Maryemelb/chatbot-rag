@@ -1,6 +1,6 @@
 import os
 from fastapi import HTTPException
-from app.models.user import users
+from app.models.user import User
 import jwt
 from dotenv import load_dotenv
 from passlib.context import CryptContext

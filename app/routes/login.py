@@ -1,8 +1,5 @@
-
-
-
 from fastapi import APIRouter, Depends, HTTPException, Response
-from app.models.user import users
+from app.models.user import User
 from app.schemas.user_schema import user_schema
 from app.dependencies.dependencies import getdb, verify_user_in_db
 from passlib.context import CryptContext
@@ -25,9 +22,9 @@ def decrypt_password(inserted_pasword: str, hashed_password: str):
 
 @router.post('/login')
 def login(user: user_schema, response:Response, db:Session= Depends(getdb)):
-          user_db= db.query(users).filter(users.email == user.email).first()  
+          user_db= db.query(User).filter(User.email == user.email).first()  
           print('test')
-          user_db= db.query(users).filter(users.email == user.email).first()
+          user_db= db.query(User).filter(User.email == user.email).first()
           print('test')
           if not user_db:
              raise HTTPException(status_code=400, detail='user not exist')
