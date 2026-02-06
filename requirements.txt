@@ -25,9 +25,7 @@ langchain_text_splitters
 chromadb
 langchain-chroma
 scikit-learn
-# sentence-transformers --use-deprecated=legacy-resolver
 transformers<5.0.0
-huggingface-hub<1.0.0,>=0.36.0
 
 sentence-transformers
 huggingface-hub<1.0.0,>=0.36.0

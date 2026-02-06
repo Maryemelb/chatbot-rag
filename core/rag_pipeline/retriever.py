@@ -24,21 +24,21 @@ async def retriever(query: str,embedding,collection_vect, nbr_results=8):
   return context_for_gemini,gemini_response,metadatas, query_vector, pages,retriever_response
 
 
-db_path = os.getenv("CHROMA_PATH", "./core/dataset/chroma_data2")
-# Initialize the PersistentClient
-client = chromadb.PersistentClient(
-    path=db_path,
-    settings=Settings(allow_reset=True)
-)
-collection_vect= client.get_or_create_collection('pdf_vectors2')
-embedding= HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-print("heollo")
-context_for_gemini,gemini_response,metadatas, query_vector, pages,retriever_response= asyncio.run(retriever('How did the author s early experience as a tinkerer lead to his career in IT support ',embedding,collection_vect, nbr_results=30))
-print(retriever_response)
-print('context')
+# db_path = os.getenv("CHROMA_PATH", "./core/dataset/chroma_data2")
+# # Initialize the PersistentClient
+# client = chromadb.PersistentClient(
+#     path=db_path,
+#     settings=Settings(allow_reset=True)
+# )
+# collection_vect= client.get_or_create_collection('pdf_vectors2')
+# embedding= HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+# print("heollo")
+# context_for_gemini,gemini_response,metadatas, query_vector, pages,retriever_response= asyncio.run(retriever('How did the author s early experience as a tinkerer lead to his career in IT support ',embedding,collection_vect, nbr_results=30))
+# print(retriever_response)
+# print('context')
 
-print(context_for_gemini)
+# print(context_for_gemini)
 
-print('gemini')
-print(gemini_response)
-#How did the author s early experience as a tinkerer lead to his career in IT support 
+# print('gemini')
+# print(gemini_response)
+# #How did the author s early experience as a tinkerer lead to his career in IT support 
