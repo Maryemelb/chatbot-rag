@@ -21,7 +21,7 @@ router= APIRouter(
 )
 
 @router.post('/query')
-def register(query_schema:query_schema,  db:Session= Depends(getdb), current_user: User= Depends(get_current_user)):
+def query(query_schema:query_schema,  db:Session= Depends(getdb), current_user: User= Depends(get_current_user)):
     
     with open("core/saved_model/kmeans.pkl", "rb") as f:
        model = pickle.load(f)
