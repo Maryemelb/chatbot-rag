@@ -11,5 +11,5 @@ router= APIRouter(
 
 @router.post('/history')
 def history(db:Session= Depends(getdb)):
-   
+     
     return "hi"

@@ -11,7 +11,6 @@ router= APIRouter(
          tags= ["health"]
 )
 
-@router.post('/health')
-def health(db:Session= Depends(getdb)):
-   
-    return "hi"
+@router.post('/')
+def health():
+    return "hello backend is working"
