@@ -4,24 +4,39 @@ from chromadb.config import Settings
 import os
 import asyncio
 from core.services.gemini_service import unswer
-async def retriever(query: str,embedding,collection_vect, nbr_results=8):
-  #embed the query
-  query_vector= embedding.embed_query(query)
-  #search on the cllection
+from mlflow import pyfunc
+import mlflow
+mlflow.set_tracking_uri("http://localhost:5000")
+mlflow.set_experiment("rag_experiment")
 
-  result= collection_vect.query(
-    query_embeddings= [query_vector],
-    n_results= nbr_results
-  )  
-  #get page number
-  metadatas= result['metadatas'][0]
-  pages= [ item.get('page') for item in metadatas]
-  pages_label= [ item.get('page_label') for item in metadatas]
-  retriever_response=result['documents'][0]
-  context_for_gemini = "\n\n---\n\n".join(retriever_response)
+async def retriever(query: str,embedding,collection_vect, nbr_results=8):
+ with mlflow.start_run(run_name="retriever_execution"):
+    mlflow.log_param("nbr_results", nbr_results)
+    mlflow.log_param("query", query)
+      #track time of embeding
+    with mlflow.start_span('embeding') as span:
+      #embed the query
+      query_vector= embedding.embed_query(query)
+      #search on the cllection
+      span.set_attribute("embeding_vector_dim", len(query_vector))
+
+    result= collection_vect.query(
+        query_embeddings= [query_vector],
+        n_results= nbr_results
+      )  
+      #get page number
   
-  gemini_response= unswer(query, context_for_gemini)
-  return context_for_gemini,gemini_response,metadatas, query_vector, pages,retriever_response
+    metadatas= result['metadatas'][0]
+    pages= [ item.get('page') for item in metadatas]
+    pages_label= [ item.get('page_label') for item in metadatas]
+    retriever_response=result['documents'][0]
+    context_for_gemini = "\n\n---\n\n".join(retriever_response)
+    #get the response val
+    with mlflow.start_span('gemini_api') as span:
+      gemini_response= unswer(query, context_for_gemini)
+      mlflow.log_text(gemini_response, 'gemini_response.txt')
+    
+    return context_for_gemini,gemini_response,metadatas, query_vector, pages,retriever_response
 
 
 # db_path = os.getenv("CHROMA_PATH", "./core/dataset/chroma_data2")
