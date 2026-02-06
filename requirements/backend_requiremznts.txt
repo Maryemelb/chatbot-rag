@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+pydantic
+python-dotenv
+httpx
+
+sqlalchemy
+sqlalchemy-utils
+psycopg2-binary
+passlib
+argon2_cffi
+PyJWT
+
+numpy
+pandas
