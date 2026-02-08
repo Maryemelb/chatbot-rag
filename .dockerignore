@@ -1,0 +1,53 @@
+# Version Control
+.git
+.gitignore
+.github
+
+# Python / Environment
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+.env.*
+.venv/
+
+# Testing
+.pytest_cache/
+tests/
+.coverage
+htmlcov/
+test-reports/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker / Kubernetes
+Dockerfile
+.dockerignore
+.Dockerignore
+docker-compose.yml
+k8s/
+
+# Documentation / Scripts
+README.md
+readme.md
+Script.sh
+*.ipynb
+notebooks/
+
+# ML Artifacts (Large files that should be external or mounted if possible)
+mlartifacts/
+mlruns/
+mlflow.db
+
+# Logs
+logs/
+*.log
+
+# Project specific
+requirements/
