@@ -25,7 +25,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
     
-RUN pip install --no-cache-dir --use-deprecated=legacy-resolver sentence-transformers
+
 
 COPY requirements.txt .
 

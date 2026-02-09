@@ -28,6 +28,8 @@ spec:
           value: "postgres"
         - name: DATABASE_PASSWORD
           value: "postgres"
+        - name: MLFLOW_TRACKING_URI
+          value: "http://mlflow:5000"
         # Add other env vars from .env as needed, e.g., for ML services
         ports:
         - containerPort: 8000

@@ -6,7 +6,7 @@ import asyncio
 from core.services.gemini_service import unswer
 from mlflow import pyfunc
 import mlflow
-mlflow.set_tracking_uri("http://localhost:5000")
+mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI", "http://localhost:5000"))
 mlflow.set_experiment("rag_experiment")
 
 async def retriever(query: str,embedding,collection_vect, nbr_results=8):
@@ -29,13 +29,17 @@ async def retriever(query: str,embedding,collection_vect, nbr_results=8):
     metadatas= result['metadatas'][0]
     pages= [ item.get('page') for item in metadatas]
     pages_label= [ item.get('page_label') for item in metadatas]
-    retriever_response=result['documents'][0]
+    
+    with mlflow.start_span('chunks_retrieval') as span:
+       retriever_response=result['documents'][0]
+       span.set_attribute("retrieved_chunks_count", len(retriever_response))
+
     context_for_gemini = "\n\n---\n\n".join(retriever_response)
     #get the response val
     with mlflow.start_span('gemini_api') as span:
       gemini_response= unswer(query, context_for_gemini)
       mlflow.log_text(gemini_response, 'gemini_response.txt')
-    
+ 
     return context_for_gemini,gemini_response,metadatas, query_vector, pages,retriever_response
 
 
